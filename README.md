@@ -68,7 +68,7 @@ case class CommonAstNode(nodeType: AstType, range: Range, properties: JsObject)
 case class AstType(override val name: String, implicit val language: String) extends NodeType
 ```
 In an AST representation the properties of a node contain both internal properties (name, value, final?) and references to other nodes (children[], body[], init, arguments[]). Since we are building a graph representation of the AST, your postprocessor must delineate between these types of properties. 
-```json
+```javascript
 {
   "type": "CallExpression", //becomes Node Type
   "start": 0, //becomes start in range
