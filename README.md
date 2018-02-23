@@ -5,7 +5,7 @@ This library is the foundation for all Optic Parsers. Once implemented, you'll b
 ### Prerequisites
 
 * A target language that is parsed with a [context-free grammar](https://www.cs.rochester.edu/~nelson/courses/csc_173/grammars/cfg.html). This is the only hard requirement Optic has for program representations. 
-* A parser for your target language that can run on the JVM or one of its supported scripted environments. If you're not sure where to start check out [ANTLR](https://github.com/antlr/antlr4/blob/master/README.md) which includes a JVM runtime and support for most popular programming languages. **Please Don't Build Your Own **
+* A parser for your target language that can run on the JVM or one of its supported scripted environments. If you're not sure where to start check out [ANTLR](https://github.com/antlr/antlr4/blob/master/README.md) which includes a JVM runtime and support for most popular programming languages. **Please Don't Build Your Own**
 * Basic knowledge of [Abstract Syntax Trees](https://en.wikipedia.org/wiki/Abstract_syntax_tree)
 * Scala / JVM Literacy
 
@@ -14,7 +14,7 @@ This library is the foundation for all Optic Parsers. Once implemented, you'll b
 
 ## Getting Started
 
-1. Create a new Scala project using sbt 1.0.* & scala 12.4.*
+1. Create a new Scala project using sbt 1.0.* & scala 2.12.*
 2. Include `parser-foundation` and its test classes from Maven Central 
 ```scala
 libraryDependencies += "com.opticdev" %% "parser-foundation" % "0.1.0"
@@ -110,10 +110,6 @@ Optic Parsers should be packaged into jars named `{targer}@{version}.jar`. If yo
 
 ## Publishing
 If you want your parser to be listed on the Optic Registry please contact aidan@opticdev.com
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## License
 This project is licensed under the MIT License
