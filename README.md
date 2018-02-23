@@ -18,7 +18,6 @@ This library is the foundation for all Optic Parsers. Once implemented, you'll b
 2. Include `parser-foundation` and its test classes from Maven Central 
 ```scala
 libraryDependencies += "com.opticdev" %% "parser-foundation" % "0.1.0"
-libraryDependencies += "com.opticdev" %% "parser-foundation" % "0.1.0" % "test"
 ```
 3. Create a package for your parser. Suggested format: `yourdomain.optic.parsers.{target}`
 4. In that package create a new class that extends `ParserBase` named `OpticParser`. ** You must use the name OpticParser or Optic won't be able to find it when it dynamically loads your package. 
