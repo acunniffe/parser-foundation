@@ -1,4 +1,4 @@
-# Parser Foundation for Optic
+# Parser Foundation for Optic [![Build Status](https://travis-ci.org/opticdev/parser-foundation.svg?branch=master)](https://travis-ci.org/opticdev/parser-foundation)
 
 This library is the foundation for all Optic Parsers. Once implemented, you'll be able to configure a parser to work with Optic's code generation and analysis tools.
 
