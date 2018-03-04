@@ -59,6 +59,10 @@ trait ParserBase {
     * */
   def parseString(contents: String): ParserResult
 
-
   final def parserRef = ParserRef(languageName, parserVersion)
+
+  override def equals(obj: scala.Any): Boolean = obj match {
+    case p: ParserBase => parserRef == p.parserRef
+    case _=> super.equals(obj)
+  }
 }
