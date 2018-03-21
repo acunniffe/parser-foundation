@@ -24,4 +24,5 @@ package object basic {
   type SourceParser  = (CommonAstNode, AstGraph, String, BasicSourceInterface) => JsValue
   type SourceMutator = (CommonAstNode, AstGraph, String, JsValue, ParserBase, BasicSourceInterface) => String
   type SourceGenerator = (JsValue, ParserBase, BasicSourceInterface) => String
+
 }
