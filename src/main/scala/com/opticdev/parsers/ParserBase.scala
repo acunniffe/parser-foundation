@@ -16,17 +16,17 @@ import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterface
 trait ParserBase {
 
   /** The name of your language, must be alphanumeric  */
-  val languageName : String
+  def languageName : String
   require(languageName.matches("^[A-Za-z_][A-Za-z\\d]*$"), "Language name must be alphanumeric")
 
   /** The semantic version of this parser package  */
-  val parserVersion: String
+  def parserVersion: String
 
   /** A set of file extensions this parser should try to parse */
-  val fileExtensions : Set[String]
+  def fileExtensions : Set[String]
 
   /** The AST Type for root node for this language */
-  val programNodeType : AstType
+  def programNodeType : AstType
 
 
   /** A list of the block nodes in this language with their AST Property Path to children
@@ -36,23 +36,23 @@ trait ParserBase {
     *    BlockNodeDesc(AstType("Program", languageName), "body")
     *  )
     * */
-  val blockNodeTypes : BlockNodeTypes
+  def blockNodeTypes : BlockNodeTypes
 
 
   /** The AST Type for the token node in this language and a path to its value
     * Example for Javascript
     *  IdentifierNodeDesc(AstType("Identifier", languageName), Seq("name"))
     * */
-  val identifierNodeDesc : IdentifierNodeDesc
+  def identifierNodeDesc : IdentifierNodeDesc
 
   /** This language's inline comment syntax  */
-  val inlineCommentPrefix : String = "//"
+  def inlineCommentPrefix : String = "//"
 
   /** Manually programmed interface for literals, tokens, object literals & arrays */
-  val basicSourceInterface : BasicSourceInterface
+  def basicSourceInterface : BasicSourceInterface
 
   /** Learned interface for all the rest of the nodes */
-  val marvinSourceInterface : MarvinSourceInterface
+  def marvinSourceInterface : MarvinSourceInterface
 
   /** The AST Type for the token node in this language and a path to its value
     * @param contents raw code to parse into a ParserResult object
@@ -65,4 +65,7 @@ trait ParserBase {
     case p: ParserBase => parserRef == p.parserRef
     case _=> super.equals(obj)
   }
+
+  /** Paths relative to project root that should never be parsed. */
+  def excludedPaths: Seq[String] = Seq.empty[String]
 }
