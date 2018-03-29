@@ -117,6 +117,8 @@ case class CommonAstNode(nodeType: AstType, range: Range, properties: JsObject, 
 
 trait WithinFile extends BaseNode {
 
+  def range: Range
+  
   def graphDepth(graph: Graph[BaseNode, LkDiEdge]) : Integer = {
 
     val rootNode = graph.nodes.filter(_.value.isAstNode()).find(_.value.dependencies(graph).isEmpty)
