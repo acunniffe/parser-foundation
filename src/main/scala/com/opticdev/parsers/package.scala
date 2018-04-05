@@ -1,7 +1,6 @@
 package com.opticdev
 
-import com.opticdev.parsers.graph.{AstType, BaseNode}
-
+import com.opticdev.parsers.graph.{AstType, BaseNode, CommonAstNode}
 import scalax.collection.edge.LkDiEdge
 import scalax.collection.mutable.Graph
 
@@ -13,4 +12,7 @@ package object parsers {
     lazy val nodeTypes = seq.map(_.nodeType).toSet
     def getPropertyPath(nodeType: AstType): Option[String] = seq.find(_.nodeType == nodeType).map(_.propertyPath)
   }
+
+  type EnterOnPostProcessor = (AstType, AstGraph, CommonAstNode) => (Set[AstType], CommonAstNode)
+
 }
