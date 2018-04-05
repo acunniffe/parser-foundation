@@ -70,6 +70,6 @@ trait ParserBase {
   def excludedPaths: Seq[String] = Seq.empty[String]
 
   /** Optional Post Processors for calculating Node Types **/
-  def enterOnPostProcessor: Map[AstType, EnterOnPostProcessor]
+  def enterOnPostProcessor: Map[AstType, EnterOnPostProcessor] = Map.empty
 
 }
