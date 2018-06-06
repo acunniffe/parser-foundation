@@ -1,6 +1,7 @@
 package com.opticdev.parsers
 
 import com.opticdev.parsers.graph.AstType
+import com.opticdev.parsers.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
 import com.opticdev.parsers.sourcegear.advanced.MarvinSourceInterface
 import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterfaces}
 
@@ -72,4 +73,6 @@ trait ParserBase {
   /** Optional Post Processors for calculating Node Types **/
   def enterOnPostProcessor: Map[AstType, EnterOnPostProcessor] = Map.empty
 
+  /** Optional Default Children Rules Applied By Node Type **/
+  def defaultChildrenRules: Map[AstType, Vector[ParserChildrenRule]] = Map.empty
 }
