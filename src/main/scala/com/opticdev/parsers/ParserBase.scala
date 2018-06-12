@@ -2,8 +2,11 @@ package com.opticdev.parsers
 
 import com.opticdev.parsers.graph.AstType
 import com.opticdev.parsers.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
+import com.opticdev.parsers.sourcegear.ParseProxy
 import com.opticdev.parsers.sourcegear.advanced.MarvinSourceInterface
 import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterfaces}
+
+import scala.util.Try
 
 /**
   * Trait implemented by all Optic Language Parsers
@@ -55,9 +58,7 @@ trait ParserBase {
   /** Learned interface for all the rest of the nodes */
   def marvinSourceInterface : MarvinSourceInterface
 
-  /** The AST Type for the token node in this language and a path to its value
-    * @param contents raw code to parse into a ParserResult object
-    * */
+  /** Parse string and return graph */
   def parseString(contents: String): ParserResult
 
   final def parserRef = ParserRef(languageName, parserVersion)
@@ -66,6 +67,16 @@ trait ParserBase {
     case p: ParserBase => parserRef == p.parserRef
     case _=> super.equals(obj)
   }
+
+  /** Parse string with proxies and return graph. Should only be used during sourcegear compilation stages */
+  def parseStringWithProxies(contents: String) : Try[ParserResult] = {
+    sourcegearParseProxies
+      .find(_.shouldUse(contents, this)).map(_.parse(contents, this))
+      .getOrElse(Try(parseString(contents)))
+  }
+
+  /** Parser Proxies */
+  def sourcegearParseProxies : Vector[ParseProxy] = Vector()
 
   /** Paths relative to project root that should never be parsed. */
   def excludedPaths: Seq[String] = Seq.empty[String]
