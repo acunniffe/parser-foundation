@@ -42,6 +42,13 @@ object SourceParserManager {
     } else throw new Error("No parser found for "+language))
   }
 
+  def parseStringWithProxies(contents: String, language: String, fileHash: String = "SPACE"): Try[ParserResult] = {
+    val parser = parserByLanguageName(language)
+    Try(if (parser.isDefined) {
+      parser.get.parseStringWithProxies(contents).get
+    } else throw new Error("No parser found for "+language))
+  }
+
   def installParser(pathToParser: String) : Try[ParserBase] = {
     val parserTry = verifyParser(pathToParser)
     if (parserTry.isSuccess) {

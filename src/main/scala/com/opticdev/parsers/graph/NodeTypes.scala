@@ -1,10 +1,11 @@
 package com.opticdev.parsers.graph
 
 import play.api.libs.json.{JsObject, JsValue}
-
 import scalax.collection.edge.LkDiEdge
 import scalax.collection.mutable.Graph
 import scalax.collection.edge.Implicits._
+
+import scala.util.hashing.MurmurHash3
 
 trait BaseNode extends Serializable with Product {
 
@@ -113,12 +114,19 @@ case class CommonAstNode(nodeType: AstType, range: Range, properties: JsObject, 
 
   def raw(implicit fileContents: String) = fileContents.substring(range.start, range.end)
 
+  override def hash: String = Integer.toHexString(
+    MurmurHash3.stringHash(nodeType.toString) ^
+    MurmurHash3.stringHash(range.toString()) ^
+    MurmurHash3.stringHash(properties.toString()) ^
+    MurmurHash3.stringHash(fileHash))
 }
 
 trait WithinFile extends BaseNode {
 
   def range: Range
-  
+
+  def hash: String
+
   def graphDepth(graph: Graph[BaseNode, LkDiEdge]) : Integer = {
 
     val rootNode = graph.nodes.filter(_.value.isAstNode()).find(_.value.dependencies(graph).isEmpty)
