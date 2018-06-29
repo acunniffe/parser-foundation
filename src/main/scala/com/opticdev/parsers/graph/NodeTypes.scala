@@ -109,6 +109,20 @@ case class CommonAstNode(nodeType: AstType, range: Range, properties: JsObject, 
       })
   }
 
+  def childrenOfType(edgeType: String)(implicit graph: Graph[BaseNode, LkDiEdge]) = {
+    graph
+      .get(this)
+      .edges
+      .filter(e=> {
+        e.isOut && e.to.value != this && e.isLabeled && e.label.asInstanceOf[CustomEdge].isChild && e.label.asInstanceOf[Child].typ == edgeType
+      })
+      .toVector
+      .sortWith(_.label.asInstanceOf[Child].index < _.label.asInstanceOf[Child].index)
+      .map(e=> {
+        (e.label, e.to.value.asInstanceOf[CommonAstNode])
+      })
+  }
+
   def parent(implicit graph: Graph[BaseNode, LkDiEdge]) =
     dependencies.find(_.isAstNode()).asInstanceOf[Option[CommonAstNode]]
 
