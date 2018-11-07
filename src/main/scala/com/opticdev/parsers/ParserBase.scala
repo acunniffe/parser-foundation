@@ -4,6 +4,7 @@ import com.opticdev.parsers.graph.AstType
 import com.opticdev.parsers.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
 import com.opticdev.parsers.sourcegear.ParseProxy
 import com.opticdev.parsers.sourcegear.advanced.MarvinSourceInterface
+import com.opticdev.parsers.tokenvalues.TokenValueHandler
 import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterfaces}
 
 import scala.util.Try
@@ -77,6 +78,9 @@ trait ParserBase {
 
   /** Parser Proxies */
   def sourcegearParseProxies : Vector[ParseProxy] = Vector()
+
+  /** Token Value Handler */
+  def tokenValueHandler : TokenValueHandler
 
   /** Paths relative to project root that should never be parsed. */
   def excludedPaths: Seq[String] = Seq.empty[String]

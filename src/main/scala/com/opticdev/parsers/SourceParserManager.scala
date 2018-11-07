@@ -15,7 +15,7 @@ object SourceParserManager {
 
   def hasParserFor(lang: String) : Boolean = installedParsers.exists(_.languageName == lang)
 
-  private def enableParser(instance: ParserBase) : ParserBase = {
+  def enableParser(instance: ParserBase) : ParserBase = {
     parsers = parsers + instance
     instance
   }
@@ -24,7 +24,7 @@ object SourceParserManager {
     parsers.find(_.languageName == lang)
   }
 
-  private def disableParser(instance: ParserBase) = {
+  def disableParser(instance: ParserBase) = {
     parsers = parsers.filterNot(_==instance)
   }
 

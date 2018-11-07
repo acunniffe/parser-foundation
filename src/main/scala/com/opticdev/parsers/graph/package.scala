@@ -9,6 +9,9 @@ package object graph {
   case class ModelType(override val name: String) extends NodeType
   case class AstType(override val name: String, implicit val language: String) extends NodeType {
     def asString = name+":"+language
+    def apply(name: String)(implicit language: String) = {
+      AstType(name, language)
+    }
   }
 
   trait CustomEdge {

@@ -126,6 +126,11 @@ case class CommonAstNode(nodeType: AstType, range: Range, properties: JsObject, 
   def parent(implicit graph: Graph[BaseNode, LkDiEdge]) =
     dependencies.find(_.isAstNode()).asInstanceOf[Option[CommonAstNode]]
 
+  def parents(implicit graph: Graph[BaseNode, LkDiEdge]): Vector[CommonAstNode] = {
+    val p = parent
+    if (p.isDefined) p.get.parents :+ p.get else Vector.empty
+  }
+
   def raw(implicit fileContents: String) = fileContents.substring(range.start, range.end)
 
   override def hash: String = Integer.toHexString(
