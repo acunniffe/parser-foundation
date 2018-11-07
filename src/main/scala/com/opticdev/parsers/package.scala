@@ -1,11 +1,10 @@
 package com.opticdev
 
-import com.opticdev.parsers.graph.{AstType, BaseNode, CommonAstNode}
+import com.opticdev.common.graph.{AstGraph, AstType, BaseNode, CommonAstNode}
 import scalax.collection.edge.LkDiEdge
 import scalax.collection.mutable.Graph
 
 package object parsers {
-  type AstGraph = Graph[BaseNode, LkDiEdge]
 
   case class BlockNodeDesc(nodeType: AstType, propertyPath: String)
   case class BlockNodeTypes(seq: BlockNodeDesc*) {

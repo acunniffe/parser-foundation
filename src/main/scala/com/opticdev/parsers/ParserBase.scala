@@ -1,7 +1,9 @@
 package com.opticdev.parsers
 
-import com.opticdev.parsers.graph.AstType
-import com.opticdev.parsers.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
+import com.opticdev.common.ParserRef
+import com.opticdev.common.graph.AstType
+import com.opticdev.parsers.sdk_subset.IncludedSDKItems
+import com.opticdev.sdk.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
 import com.opticdev.parsers.sourcegear.ParseProxy
 import com.opticdev.parsers.sourcegear.advanced.MarvinSourceInterface
 import com.opticdev.parsers.tokenvalues.TokenValueHandler
@@ -90,4 +92,7 @@ trait ParserBase {
 
   /** Optional Default Children Rules Applied By Node Type **/
   def defaultChildrenRules: Map[AstType, Vector[ParserChildrenRule]] = Map.empty
+
+  /** SDK Items provided by this language by default */
+  def defaultSDKItems: IncludedSDKItems = IncludedSDKItems()
 }

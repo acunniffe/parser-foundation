@@ -1,6 +1,6 @@
 package com.opticdev.parsers
 
-import com.opticdev.parsers.graph.{AstType, CommonAstNode}
+import com.opticdev.common.graph.{AstType, CommonAstNode}
 import play.api.libs.json.{JsString, JsValue}
 
 import scala.util.Try

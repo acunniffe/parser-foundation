@@ -1,7 +1,7 @@
 package com.opticdev.parsers.sourcegear
 
-import com.opticdev.parsers.{AstGraph, ParserBase}
-import com.opticdev.parsers.graph.{CommonAstNode, AstType}
+import com.opticdev.common.graph.{AstGraph, AstType, CommonAstNode}
+import com.opticdev.parsers.ParserBase
 import play.api.libs.json.JsValue
 
 import scala.util.Try

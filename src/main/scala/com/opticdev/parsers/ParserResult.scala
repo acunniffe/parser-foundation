@@ -1,6 +1,9 @@
 package com.opticdev.parsers
 
+import com.opticdev.common.graph.AstGraph
+
 /** Parser Results for all languages must be delivered in this format
+ *
   * @param graph the AstGraph of this file
   * @param language the language name
   * @param elapsedTime time of parsing operation in nanoseconds

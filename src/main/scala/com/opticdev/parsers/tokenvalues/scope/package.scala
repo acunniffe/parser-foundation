@@ -1,7 +1,7 @@
 package com.opticdev.parsers.tokenvalues
 
-import com.opticdev.parsers.{AstGraph, ParserBase}
-import com.opticdev.parsers.graph.CommonAstNode
+import com.opticdev.common.graph.{AstGraph, CommonAstNode}
+import com.opticdev.parsers.ParserBase
 
 package object scope {
   trait ScopeRule {
@@ -10,7 +10,7 @@ package object scope {
 
   object DefaultScopeRule extends ScopeRule {
     override def inScope(node: CommonAstNode, candidate: CommonAstNode, astGraph: AstGraph, parser: ParserBase): Boolean = {
-      import com.opticdev.parsers.graph.GraphImplicits._
+      import com.opticdev.common.graph.GraphImplicits._
 
       val nParents = node.parents(astGraph).reverse.filter(p => parser.blockNodeTypes.nodeTypes.contains(p.nodeType))
       val cParents = candidate.parents(astGraph).reverse.filter(p => parser.blockNodeTypes.nodeTypes.contains(p.nodeType))

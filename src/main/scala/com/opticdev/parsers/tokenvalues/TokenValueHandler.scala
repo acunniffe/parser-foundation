@@ -1,7 +1,7 @@
 package com.opticdev.parsers.tokenvalues
 
-import com.opticdev.parsers.AstGraph
-import com.opticdev.parsers.graph.{AstType, BaseNode, Child, CommonAstNode}
+import com.opticdev.common.graph._
+import com.opticdev.parsers.ParserBase
 
 trait TokenValueHandler {
   val tokenRules : Seq[TokenRule]

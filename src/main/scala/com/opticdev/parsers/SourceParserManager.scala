@@ -3,9 +3,11 @@ package com.opticdev.parsers
 import java.net.URLClassLoader
 import java.security.MessageDigest
 import java.util.jar.JarFile
-import collection.JavaConverters._
 
-import com.opticdev.parsers.graph.NodeType
+import com.opticdev.common.ParserRef
+
+import collection.JavaConverters._
+import com.opticdev.common.graph.NodeType
 
 import scala.util.{Success, Try}
 

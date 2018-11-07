@@ -1,6 +1,6 @@
 package com.opticdev.parsers
 
-import com.opticdev.parsers.graph.{AstType, BaseNode, CommonAstNode}
+import com.opticdev.common.graph.{AstGraph, AstType, BaseNode, CommonAstNode}
 import com.opticdev.parsers.tokenvalues.scope.{DefaultScopeRule, ScopeRule}
 
 import scala.util.Try
