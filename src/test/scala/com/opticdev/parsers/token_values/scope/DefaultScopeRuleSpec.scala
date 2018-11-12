@@ -1,4 +1,4 @@
-package com.opticdev.parsers.tokenvalues.scope
+package com.opticdev.parsers.token_values.scope
 
 import org.scalatest.FunSpec
 

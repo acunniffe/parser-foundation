@@ -1,4 +1,4 @@
-package com.opticdev.parsers.tokenvalues
+package com.opticdev.parsers.token_values
 
 import com.opticdev.common.graph._
 import com.opticdev.parsers.ParserBase
