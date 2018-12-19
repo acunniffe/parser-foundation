@@ -12,6 +12,7 @@ import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterface
 import com.opticdev.parsers.sdk_subset.packageRefFromParser
 
 import scala.util.Try
+import scala.util.matching.Regex
 
 /**
   * Trait implemented by all Optic Language Parsers
@@ -41,7 +42,6 @@ trait ParserBase {
   final def internalSDKPackageRef: PackageRef = packageRefFromParser(this)
 
 
-
   /** A list of the block nodes in this language with their AST Property Path to children
     * Example for Javascript
     *  BlockNodeTypes(
@@ -60,6 +60,9 @@ trait ParserBase {
 
   /** This language's inline comment syntax  */
   def inlineCommentPrefix : String = "//"
+
+  /** This language's block comment regex  */
+  def blockCommentRegex : Regex = """(?:\/\*)([\s\S]*?)(?:\*\/)""".r
 
   /** Manually programmed interface for literals, tokens, object literals & arrays */
   def basicSourceInterface : BasicSourceInterface
