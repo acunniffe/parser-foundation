@@ -7,8 +7,8 @@ import com.opticdev.sdk.skills_sdk.lens.{OMLens, OMLensCodeComponent, OMLensVari
 import play.api.libs.json.JsObject
 
 case class Generator(id: String,
-                     snippet: String,
                      abstractionId: String,
+                     snippet: String,
                      value: Map[String, OMLensCodeComponent],
                      variables: Map[String, OMLensVariableScopeEnum] = Map()) extends IncludedSDKItem[OMLens] {
 
@@ -28,6 +28,8 @@ case class Generator(id: String,
       internal = true
     )
   }
+
+  override def isGenerator: Boolean = true
 
 }
 

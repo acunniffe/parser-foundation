@@ -17,6 +17,8 @@ case class Abstraction(id: String, schema: JsObject) extends IncludedSDKItem[OMS
       internal = true
     )
   }
+
+  override def isAbstraction: Boolean = true
 }
 
 object Abstraction {

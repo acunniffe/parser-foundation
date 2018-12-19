@@ -1,15 +1,18 @@
 package com.opticdev.parsers
 
-import com.opticdev.common.ParserRef
+import com.opticdev.common.{PackageRef, ParserRef}
 import com.opticdev.common.graph.AstType
+import com.opticdev.parsers.imports.{DefaultImportHandler, ImportHandler}
 import com.opticdev.parsers.sdk_subset.IncludedSDKItems
 import com.opticdev.sdk.rules.{ChildrenRuleTypeEnum, ParserChildrenRule}
 import com.opticdev.parsers.sourcegear.ParseProxy
 import com.opticdev.parsers.sourcegear.advanced.MarvinSourceInterface
-import com.opticdev.parsers.tokenvalues.TokenValueHandler
+import com.opticdev.parsers.token_values.TokenValueHandler
 import sourcegear.basic.{BasicSourceInterface, LiteralInterfaces, TokenInterfaces}
+import com.opticdev.parsers.sdk_subset.packageRefFromParser
 
 import scala.util.Try
+import scala.util.matching.Regex
 
 /**
   * Trait implemented by all Optic Language Parsers
@@ -35,6 +38,9 @@ trait ParserBase {
   /** The AST Type for root node for this language */
   def programNodeType : AstType
 
+  /** Internal SDK Items packageRef */
+  final def internalSDKPackageRef: PackageRef = packageRefFromParser(this)
+
 
   /** A list of the block nodes in this language with their AST Property Path to children
     * Example for Javascript
@@ -54,6 +60,9 @@ trait ParserBase {
 
   /** This language's inline comment syntax  */
   def inlineCommentPrefix : String = "//"
+
+  /** This language's block comment regex  */
+  def blockCommentRegex : Regex = """(?:\/\*)([\s\S]*?)(?:\*\/)""".r
 
   /** Manually programmed interface for literals, tokens, object literals & arrays */
   def basicSourceInterface : BasicSourceInterface
@@ -94,5 +103,10 @@ trait ParserBase {
   def defaultChildrenRules: Map[AstType, Vector[ParserChildrenRule]] = Map.empty
 
   /** SDK Items provided by this language by default */
+  def importHandler: ImportHandler = DefaultImportHandler
+
+  /** SDK Items provided by this language by default */
   def defaultSDKItems: IncludedSDKItems = IncludedSDKItems()
+
+
 }
